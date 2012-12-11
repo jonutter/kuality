@@ -1,4 +1,4 @@
-class Reports < BasePage
+class ReportList < BasePage
 
   header_elements
 
@@ -7,9 +7,5 @@ class Reports < BasePage
     self.links(class: "lightbox_trigger").each { |link| reports << link.text }
     reports
   end
-
-  element(:rvi) { |b| b.frame(id: "jasper-report-viewer-iframe") }
-
-  link "Click to close"
 
 end
