@@ -1,5 +1,9 @@
 class SignIn < BasePage
 
+  page_url "#{$base_url}/users/sign_in"
+
+  expected_element :email
+
   element(:email) { |b| b.text_field(id: "user_email") }
   element(:password) { |b| b.text_field(id: "user_password") }
   element(:remember_me) { |b| b.checkbox(id: "user_remember_me") }
