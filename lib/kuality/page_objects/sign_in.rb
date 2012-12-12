@@ -16,4 +16,10 @@ class SignIn < BasePage
   link "Register"
   link "Home"
 
+  def log_in(username, pword)
+    email.set username
+    password.set pword
+    sign_in
+  end
+
 end
