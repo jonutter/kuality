@@ -2,9 +2,9 @@ class SignIn < BasePage
 
   page_url "#{$base_url}/users/sign_in"
 
-  expected_element :email
+  expected_element :login
 
-  element(:email) { |b| b.text_field(id: "user_email") }
+  element(:login) { |b| b.text_field(id: "user_login") }
   element(:password) { |b| b.text_field(id: "user_password") }
   element(:remember_me) { |b| b.checkbox(id: "user_remember_me") }
 
@@ -17,7 +17,7 @@ class SignIn < BasePage
   link "Home"
 
   def log_in(username, pword)
-    email.set username
+    login.set username
     password.set pword
     sign_in
   end

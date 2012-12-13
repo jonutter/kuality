@@ -3,7 +3,6 @@ class UserObject
   include Foundry
   include DataFactory
   include StringFactory
-  include Workflows
 
   attr_accessor :name, :email, :password
 
@@ -48,7 +47,7 @@ class UserObject
       if @browser.text_field(id: "user_email").present?
         userlogin
       else # Log the current user out, then log in
-        log_out
+        log_out if @browser.link(:text=>"Sign Out").present?
         userlogin
       end
     end
@@ -64,13 +63,14 @@ class UserObject
   end
 
   def log_out
-    @browser.link(:text=>"Sign Out").click
+    so = @browser.link(:text=>"Sign Out")
+    so.click if so.present?
   end
 
   private
 
   def userlogin
-    on SignIn do |page|
+    visit SignIn do |page|
       page.log_in @email, @password
     end
   end
