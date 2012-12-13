@@ -40,6 +40,16 @@ class UserObject
 
   end
 
+  def register
+    visit Register do |sign_up|
+      sign_up.name.set @name
+      sign_up.email.set @email
+      sign_up.password.set @password
+      sign_up.password_confirmation.set @password
+      sign_up.sign_up
+    end
+  end
+
   def sign_in
     if logged_in?
       # do nothing
