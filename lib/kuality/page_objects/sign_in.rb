@@ -1,5 +1,7 @@
 class SignIn < BasePage
 
+  header_elements
+
   page_url "#{$base_url}/users/sign_in"
 
   expected_element :login
