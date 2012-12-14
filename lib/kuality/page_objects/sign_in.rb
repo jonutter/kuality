@@ -15,7 +15,6 @@ class SignIn < BasePage
   link "Forgot your password?"
   link "Sign in with Google"
   link "Sign in with Facebook"
-  link "Register"
   link "Home"
 
   def log_in(username, pword)
