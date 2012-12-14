@@ -1,6 +1,5 @@
  class Register < UserBase
 
-   header_elements
    user_elements
 
    page_url "#{$base_url}/users/sign_up"
