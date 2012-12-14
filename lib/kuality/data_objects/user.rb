@@ -64,9 +64,9 @@ class UserObject
   end
 
   def logged_in?
-    user_li=@browser.li(class: "brand user-name")
-    if user_li.present?
-      user_li.text=~/#{@name}/ ? true : false
+    user_menu=@browser.link(class: "dropdown-toggle")
+    if user_menu.present?
+      user_menu.text=~/#{@name}/ ? true : false
     else
       return false
     end
