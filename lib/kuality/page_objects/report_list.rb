@@ -8,4 +8,6 @@ class ReportList < BasePage
     reports
   end
 
+  action(:open) { |report, b| b.link(text: report).click; b.loading }
+
 end
