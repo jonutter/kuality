@@ -3,7 +3,7 @@ class BasePage < PageFactory
   class << self
 
     def header_elements
-      link "Sign Out"
+      link "Sign out"
       link "Reports"
       link "Register"
       element(:user_menu) { |b| b.link(class: "dropdown-toggle") }

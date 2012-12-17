@@ -20,16 +20,14 @@ class UserObject
   end
 
   def edit opts={}
-
+    on(Home).account_settings
+    on UserProfile do |user|
+      user.name.fit opts[:name]
+      user.email.fit opts[:email]
+      user.current_password.set @password
+      user.update_profile
+    end
     set_options(opts)
-  end
-
-  def view
-
-  end
-
-  def delete
-
   end
 
   def register
@@ -46,10 +44,10 @@ class UserObject
     if logged_in?
       # do nothing
     else # see if we're on the login screen
-      if @browser.text_field(id: "user_email").present?
+      if @browser.text_field(id: "user_login").present?
         userlogin
       else # Log the current user out, then log in
-        log_out if @browser.link(:text=>"Sign Out").present?
+        log_out
         userlogin
       end
     end
@@ -65,8 +63,7 @@ class UserObject
   end
 
   def log_out
-    so = @browser.link(:text=>"Sign Out")
-    so.click if so.present?
+    s_o.click if s_o.present?
   end
 
   private
@@ -75,6 +72,10 @@ class UserObject
     visit SignIn do |page|
       page.log_in @email, @password
     end
+  end
+
+  def s_o
+    @browser.link(id: "navbar-link-signout")
   end
 
 end
