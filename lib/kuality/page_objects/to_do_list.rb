@@ -17,3 +17,7 @@ class ToDoList < BasePage
   end
 
 end
+
+class Home < ToDoList
+
+end
