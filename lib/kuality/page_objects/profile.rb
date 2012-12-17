@@ -6,7 +6,7 @@ class UserProfile < UserBase
 
   element(:current_password) { |b| b.text_field(id: "user_current_password") }
 
-  button "Update"
+  button "Update User"
   link "Cancel my account"
   link "Back"
   

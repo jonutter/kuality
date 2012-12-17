@@ -4,7 +4,9 @@ class ReportList < BasePage
 
   page_url "#{$base_url}/reports"
 
-  element @browser.button(class: "lightbox-trigger btn btn-link")
+  expected_element :first_button
+
+  element(:first_button) { |b| b.button(class: "lightbox-trigger btn btn-link") }
 
   def reports
     reports = []

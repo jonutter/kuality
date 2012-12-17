@@ -19,14 +19,6 @@ class UserObject
     set_options(options)
   end
 
-  def create
-
-  end
-
-  def sign_up
-
-  end
-
   def edit opts={}
 
     set_options(opts)
