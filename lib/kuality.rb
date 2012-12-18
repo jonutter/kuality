@@ -1,4 +1,3 @@
-require 'cgi'
 require 'test-factory'
 Dir["#{File.dirname(__FILE__)}/kuality/*.rb"].each {|f| require f }
 Dir["#{File.dirname(__FILE__)}/kuality/page_objects/*.rb"].each {|f| require f }
