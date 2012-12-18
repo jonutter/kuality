@@ -5,3 +5,6 @@ class Landing < BasePage
   page_url $base_url
 
 end
+
+# An alias for the Landing class.
+class Welcome < Landing; end

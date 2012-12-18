@@ -4,7 +4,7 @@ class UserObject
   include DataFactory
   include StringFactory
 
-  attr_accessor :name, :email, :password
+  attr_accessor :name, :email, :password, :role
 
   def initialize(browser, opts={})
     @browser = browser
@@ -69,9 +69,7 @@ class UserObject
   private
 
   def userlogin
-    visit SignIn do |page|
-      page.log_in @email, @password
-    end
+    visit(SignIn).log_in @email, @password
   end
 
   def s_o
