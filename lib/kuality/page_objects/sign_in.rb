@@ -11,10 +11,6 @@ class SignIn < BasePage
   element(:remember_me) { |b| b.checkbox(id: "user_remember_me") }
 
   button "Sign In"
-  link "Forgot your password?"
-  link "Sign in with Google"
-  link "Sign in with Facebook"
-  link "Home"
 
   def log_in(username, pword)
     login.set username
