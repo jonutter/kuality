@@ -4,7 +4,7 @@
 
    page_url "#{$base_url}/users/sign_up"
 
-   button "Sign up"
+   button "Sign Up"
    link "Sign in"
    link "Forgot your password?"
    link "Sign in with Google"

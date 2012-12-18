@@ -10,8 +10,7 @@ class SignIn < BasePage
   element(:password) { |b| b.text_field(id: "user_password") }
   element(:remember_me) { |b| b.checkbox(id: "user_remember_me") }
 
-  button "Sign in"
-  link "Sign up"
+  button "Sign In"
   link "Forgot your password?"
   link "Sign in with Google"
   link "Sign in with Facebook"
