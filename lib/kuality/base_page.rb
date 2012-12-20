@@ -6,6 +6,7 @@ class BasePage < PageFactory
       link "Sign out"
       link "Reports"
       link "Register"
+      link "Home"
       element(:user_menu) { |b| b.link(class: "dropdown-toggle") }
       action(:loading) { |b| b.div(class: "loading hide").wait_while_present }
       value(:alert_box) { |b| b.div(class: /alert/).text }
