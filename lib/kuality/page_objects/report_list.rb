@@ -11,7 +11,7 @@ class ReportList < BasePage
   def reports
     reports = []
     self.buttons(class: "lightbox-trigger btn btn-link").each { |link| reports << link.text }
-    reports
+    reports.values_at(reports.each_index.select{|i| i.even?})
   end
 
   action(:open) { |report, b| b.button(text: report).click; b.loading }
