@@ -5,7 +5,6 @@ class Register < UserBase
 
   page_url "#{$base_url}/users/sign_up"
 
-  value(:password_error) { |b| b.div(class: /control-group password/).span(class: "help-inline").text }
   link "Forgot your password?"
   link "Sign in with Google"
   link "Sign in with Facebook"

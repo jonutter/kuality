@@ -4,15 +4,16 @@ class UserObject
   include DataFactory
   include StringFactory
 
-  attr_accessor :name, :email, :password, :role
+  attr_accessor :name, :username, :email, :password, :role
 
   def initialize(browser, opts={})
     @browser = browser
 
     defaults = {
-      :name=>"test10",
+      :name=>"Tester Ten",
+      :username=>"test10",
       :email=>"test10@customer1.herokuapp.com",
-      :password=>"test10",
+      :password=>"test10"
     }
     options = defaults.merge(opts)
 
@@ -23,6 +24,7 @@ class UserObject
     on(Home).account_settings
     on UserProfile do |user|
       user.name.fit opts[:name]
+      user.username.fit opts[:username]
       user.email.fit opts[:email]
       user.current_password.set @password
       user.update_profile
@@ -33,6 +35,7 @@ class UserObject
   def register
     visit Register do |sign_up|
       sign_up.name.set @name
+      sign_up.username.set @username
       sign_up.email.set @email
       sign_up.password.set @password
       sign_up.password_confirmation.set @password
