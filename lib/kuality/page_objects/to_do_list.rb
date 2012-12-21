@@ -5,10 +5,9 @@ class ToDoList < BasePage
 
   expected_element :first_todo_item
 
-  element(:list_toggle) { |b| b.link(title: "Calendar") }
-  element(:calendar_toggle) { |b| b.link(title: "List") }
+  element(:list_toggle) { |b| b.link(title: "Calendar"); b.loading }
+  element(:calendar_toggle) { |b| b.link(title: "List"); b.loading }
   element(:todo_list) { |b| b.div(class: "js-todo-list todo-list-body pull-left") }
-  element(:loading_div) { |b| b.div(class: "loading") }
   element(:first_todo_item) { |b| b.li(class: /^todo-item.*first$/) }
   element(:last_todo_item) { |b| b.li(class: /^todo-item.*last$/) }
   #element(:pending_item_count) { |b| b.unk(unk: "unk") }
