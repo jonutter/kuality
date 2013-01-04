@@ -10,7 +10,6 @@ class ToDoList < BasePage
   element(:todo_list) { |b| b.div(class: "js-todo-list todo-list-body pull-left") }
   element(:first_todo_item) { |b| b.li(class: /^todo-item.*first$/) }
   element(:last_todo_item) { |b| b.li(class: /^todo-item.*last$/) }
-  #element(:pending_item_count) { |b| b.unk(unk: "unk") }
 
   action(:scroll_to_top) { |p| p.first_todo_item.hover }
   action(:load_more_items) { |p| p.last_todo_item.hover; p.loading }
