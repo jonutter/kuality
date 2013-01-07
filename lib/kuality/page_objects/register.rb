@@ -3,7 +3,7 @@ class Register < UserBase
   profile_elements
   password_elements
 
-  page_url "#{$base_url}/users/sign_up"
+  page_url "#{ENV['base_url']}/users/sign_up"
 
   link "Forgot your password?"
   link "Sign in with Google"

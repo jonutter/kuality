@@ -2,7 +2,7 @@ class ReportList < BasePage
 
   header_elements
 
-  page_url "#{$base_url}/reports"
+  page_url "#{ENV['base_url']}/reports"
 
   expected_element :first_button
 

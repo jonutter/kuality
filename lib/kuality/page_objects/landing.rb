@@ -2,7 +2,7 @@ class Landing < BasePage
 
   header_elements
 
-  page_url $base_url
+  page_url ENV['base_url']
 
 end
 

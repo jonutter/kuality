@@ -13,9 +13,18 @@ class Kuality
   attr_reader :browser
 
   def initialize(web_browser, url)
-    @browser = Watir::Browser.new web_browser
-    @browser.window.resize_to(1400,900)
-    @browser.goto url
+    if web_browser == :saucelabs
+      @browser = Watir::Browser.new(
+          :remote,
+          :url => "http://#{$username}:#{$api_key}@ondemand.saucelabs.com:80/wd/hub",
+          :desired_capabilities => $caps
+      )
+      @browser.goto url
+    else
+      @browser = Watir::Browser.new web_browser
+      @browser.window.resize_to(1400,900)
+      @browser.goto url
+    end
   end
 
 end
