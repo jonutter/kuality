@@ -18,7 +18,7 @@ class Kuality
       @browser = Watir::Browser.new(
           :remote,
           :url => "http://#{ENV['username']}:#{ENV['api_key']}@ondemand.saucelabs.com:80/wd/hub",
-          :desired_capabilities => {:browser_name=>ENV['browser'], :platform=>ENV['platform'], :version=>ENV['version'], :name=>ENV['name']}
+          :desired_capabilities => $environment
       )
     else
       @browser = Watir::Browser.new web_browser
