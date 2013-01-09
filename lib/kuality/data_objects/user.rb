@@ -6,18 +6,16 @@ class UserObject
 
   attr_accessor :name, :username, :email, :password, :role
 
+  DEFAULTS = {
+    name:     "Tester Ten",
+    username: "test10",
+    email:    "test10@customer1.herokuapp.com",
+    password: "test10"
+  }
+
   def initialize(browser, opts={})
     @browser = browser
-
-    defaults = {
-      :name=>"Tester Ten",
-      :username=>"test10",
-      :email=>"test10@customer1.herokuapp.com",
-      :password=>"test10"
-    }
-    options = defaults.merge(opts)
-
-    set_options(options)
+    set_options DEFAULTS.merge(opts)
   end
 
   def edit opts={}
