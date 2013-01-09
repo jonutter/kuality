@@ -3,10 +3,10 @@ class BasePage < PageFactory
   class << self
 
     def header_elements
-      link %|" Sign out"|
-      link %|" Reports"|
-      link %|" Register"|
-      link %|" Home"|
+      action(:sign_out) { |b| b.link(text: %|" Sign out"|) }
+      action(:reports) { |b| b.link(text: %|" Reports"|) }
+      action(:register) { |b| b.link(text: %|" Register"|) }
+      action(:home) { |b| b.link(text: %|" Home"|) }
       element(:user_menu) { |b| b.link(class: "dropdown-toggle") }
       action(:loading) { |b| b.div(class: "loading hide").wait_while_present }
       value(:alert_box) { |b| b.div(class: /alert/).text }
