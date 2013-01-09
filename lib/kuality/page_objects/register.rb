@@ -12,3 +12,5 @@ class Register < UserBase
   link "Sign in"
 
 end
+
+class SignUp < Register; end
