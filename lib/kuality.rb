@@ -12,8 +12,7 @@ class Kuality
 
   attr_reader :browser
 
-  def initialize(web_browser, url)
-    $base_url = url
+  def initialize(web_browser)
     if web_browser == :saucelabs
       @browser = Watir::Browser.new(
           :remote,
