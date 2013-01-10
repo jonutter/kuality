@@ -23,7 +23,6 @@ class Kuality
       @browser = Watir::Browser.new web_browser
       @browser.window.resize_to(1400,900)
     end
-    raise "You must define the $base_url global variable for your test site" if $base_url==nil
     @browser.goto $base_url
   end
 
