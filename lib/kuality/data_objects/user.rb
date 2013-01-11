@@ -2,7 +2,6 @@ class UserObject
 
   include Foundry
   include DataFactory
-  include StringFactory
 
   attr_accessor :name, :username, :email, :password, :role
 
@@ -27,7 +26,7 @@ class UserObject
       user.current_password.set @password
       user.update_profile
     end
-    set_options(opts)
+    update_options(opts)
   end
 
   def register
@@ -59,7 +58,7 @@ class UserObject
     if user_menu.present?
       user_menu.text=~/#{@name}/ ? true : false
     else
-      return false
+      false
     end
   end
 
