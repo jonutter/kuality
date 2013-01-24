@@ -8,8 +8,8 @@ class UserBase < BasePage
       element(:name) { |b| b.text_field(id: "user_name") }
       element(:username) { |b| b.text_field(id: "user_username") }
       element(:email) { |b| b.text_field(id: "user_email") }
-      value(:name_error) { |b| b.div(class: /control-group string/, :index=>0).span(class: "help-inline").text }
-      value(:username_error) { |b| b.div(class: /control-group string/, :index=>1).span(class: "help-inline").text }
+      value(:name_error) { |b| b.div(class: /user-name/).span(class: "help-inline").text }
+      value(:username_error) { |b| b.div(class: /user-username/).span(class: "help-inline").text }
       value(:email_error) { |b| b.div(class: /control-group email/).span(class: "help-inline").text }
     end
 
