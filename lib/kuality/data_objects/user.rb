@@ -62,15 +62,11 @@ class UserObject
   end
 
   def sign_in
-    if logged_in?
-      # do nothing
-    else # see if we're on the login screen
-      if @browser.text_field(id: "user_login").present?
-        userlogin
-      else # Log the current user out, then log in
-        log_out
-        userlogin
-      end
+    if logged_out?
+      userlogin
+    else # Log the current user out, then log in
+      log_out
+      userlogin
     end
   end
 
