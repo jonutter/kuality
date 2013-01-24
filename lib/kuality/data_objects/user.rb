@@ -21,8 +21,7 @@ class UserObject
     length_warning opts[:username] unless opts[:username]==nil
     sign_in unless logged_in?
     on(Home).account_settings
-    user_set=Set.new [:name, :username, :email] # Need this line to keep
-    if opts.keys.to_set.subset? user_set        # <= this conditional clean
+    if opts.keys.to_set.subset?([:name, :username, :email].to_set)
       on UserProfile do |user|
         user.name.fit opts[:name]
         user.username.fit opts[:username]
