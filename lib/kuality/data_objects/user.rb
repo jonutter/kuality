@@ -84,7 +84,6 @@ class UserObject
   alias_method :log_in, :sign_in
 
   def logged_in?
-    user_menu=@browser.link(class: "dropdown-toggle")
     if user_menu.present?
       user_menu.text=~/#{@name}/ ? true : false
     else
@@ -115,6 +114,10 @@ class UserObject
 
   def length_warning string
     warn "The specified username is too short" if string.length < 3
+  end
+
+  def user_menu
+    @browser.link(class: "dropdown-toggle")
   end
 
 end
