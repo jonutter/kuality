@@ -19,7 +19,7 @@ class UserObject
 
   def edit opts={}
     length_warning opts[:username] unless opts[:username]==nil
-    sign_in unless logged_in?
+    log_in unless logged_in?
     on(Home).account_settings
     if opts.keys.to_set.subset?([:name, :username, :email].to_set)
       on UserProfile do |user|
@@ -100,9 +100,9 @@ class UserObject
   end
   alias_method :sign_out, :log_out
 
-  # =======
+  #========
   private
-  # =======
+  #========
 
   def user_login
     visit(SignIn).log_in @email, @password
