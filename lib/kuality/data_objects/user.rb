@@ -50,7 +50,7 @@ class UserObject
       visit Register do |check_name|
         check_name.username.set @username
         check_name.sign_up
-        if check_name.username_error.present? && check_name.username_error=="has already been taken"
+        if check_name.username_error_element.present? && check_name.username_error=="has already been taken"
           true
         else
           false
