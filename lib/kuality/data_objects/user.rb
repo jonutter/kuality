@@ -19,14 +19,26 @@ class UserObject
 
   def edit opts={}
     length_warning opts[:username] unless opts[:username]==nil
-    sign_in
+    sign_in unless logged_in?
     on(Home).account_settings
-    on UserProfile do |user|
-      user.name.fit opts[:name]
-      user.username.fit opts[:username]
-      user.email.fit opts[:email]
-      user.current_password.set @password
-      user.update_profile
+    user_set=Set.new [:name, :username, :email] # Need this line to keep
+    if opts.keys.to_set.subset? user_set        # <= this conditional clean
+      on UserProfile do |user|
+        user.name.fit opts[:name]
+        user.username.fit opts[:username]
+        user.email.fit opts[:email]
+        user.current_password.set @password
+        user.update_profile
+      end
+    end
+    unless opts[:password]==nil
+      on(UserProfile).password
+      on UserPassword do |update|
+        update.password.set opts[:password]
+        update.password_confirmation.set opts[:password]
+        update.current_password.set @password
+        update.change_password
+      end
     end
     update_options(opts)
   end
@@ -60,15 +72,17 @@ class UserObject
       end
     end
   end
+  alias_method :sign_up, :register
 
   def sign_in
     if logged_out?
-      userlogin
+      user_login
     else # Log the current user out, then log in
       log_out
-      userlogin
+      user_login
     end
   end
+  alias_method :log_in, :sign_in
 
   def logged_in?
     user_menu=@browser.link(class: "dropdown-toggle")
@@ -86,10 +100,13 @@ class UserObject
   def log_out
     s_o.click if s_o.present?
   end
+  alias_method :sign_out, :log_out
 
+  # =======
   private
+  # =======
 
-  def userlogin
+  def user_login
     visit(SignIn).log_in @email, @password
   end
 
