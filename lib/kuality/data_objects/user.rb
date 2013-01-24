@@ -19,7 +19,7 @@ class UserObject
 
   def edit opts={}
     length_warning opts[:username] unless opts[:username]==nil
-    log_in unless logged_in?
+    sign_in unless logged_in?
     on(Home).account_settings
     if opts.keys.to_set.subset?([:name, :username, :email].to_set)
       on UserProfile do |user|
@@ -44,16 +44,18 @@ class UserObject
 
   def registered?
     if logged_in?
-      return true
+      true
     else
       log_out if user_menu.present?
       visit Register do |check_name|
         check_name.username.set @username
         check_name.sign_up
-        begin
-          return check_name.username_error=="has already been taken"
-        rescue Watir::Exception::UnknownObjectException
-          return false
+        puts "Yes it exists!" if check_name.username_error.exists?
+        exit
+        if check_name.username_error.exists? && check_name.username_error=="has already been taken"
+          true
+        else
+          false
         end
       end
     end
@@ -100,9 +102,9 @@ class UserObject
   end
   alias_method :sign_out, :log_out
 
-  #========
+  # =======
   private
-  #========
+  # =======
 
   def user_login
     visit(SignIn).log_in @email, @password
