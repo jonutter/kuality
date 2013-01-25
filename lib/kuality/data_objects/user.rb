@@ -44,16 +44,16 @@ class UserObject
 
   def registered?
     if logged_in?
-      true
+      return true
     else
       log_out if user_menu.present?
       visit Register do |check_name|
         check_name.username.set @username
         check_name.sign_up
-        if check_name.username_error_element.present? && check_name.username_error=="has already been taken"
-          true
-        else
-          false
+        begin
+          return check_name.username_error=="has already been taken"
+        rescue Watir::Exception::UnknownObjectException
+          return false
         end
       end
     end
