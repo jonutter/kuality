@@ -50,13 +50,9 @@ class UserObject
       visit Register do |check_name|
         check_name.username.set @username
         check_name.sign_up
-        puts "Yes it exists!" if check_name.username_error.exists?
+        puts check_name.username_error_element.exists?
+        puts check_name.username_error
         exit
-        if check_name.username_error.exists? && check_name.username_error=="has already been taken"
-          true
-        else
-          false
-        end
       end
     end
   end
